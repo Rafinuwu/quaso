@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var userAnswers = new FormData(quizForm);
 
     quizData.forEach(function(question, index) {
-      var selectedAnswer = userAnswers.get(q${index + 1});
+      var selectedAnswer = userAnswers.get('q' + (index + 1));
       if (selectedAnswer === question.answer) {
         score++;
       }
