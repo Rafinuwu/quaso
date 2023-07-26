@@ -1,47 +1,43 @@
-document.addEventListener("DOMContentLoaded", function() {
-  var quizData = [
-    {
-      question: "Toi koi?",
-      options: ["hoem", "dudu", "tomar moaan"],
-      answer: "hoem",
-    },
-    {
-      question: "Where did we first meet?",
-      options: ["concert", "orientation", "dudu first day"],
-      answer: "dudu first day",
-    },
-    {
-      question: "What's my most fav memory of us?",
-      options: ["juju", "gulshan datez", "uttara"],
-      answer: "juju",
-    },
-  ];
+// Retrieve the list from local storage if it exists, or create an empty array
+let bucketList = JSON.parse(localStorage.getItem('bucketList')) || [];
 
-  var quizForm = document.getElementById("quiz-form");
-  var resultDiv = document.getElementById("result");
-  var scoreSpan = document.getElementById("score");
+const form = document.getElementById('addForm');
+const itemList = document.getElementById('itemList');
 
-  quizForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    var score = 0;
-    var inputs = quizForm.elements;
-
-    for (var i = 0; i < quizData.length; i++) {
-      var selectedAnswer = null;
-      for (var j = 0; j < inputs.length; j++) {
-        var input = inputs[j];
-        if (input.name === q${i + 1} && input.checked) {
-          selectedAnswer = input.value;
-          break;
-        }
-      }
-      if (selectedAnswer === quizData[i].answer) {
-        score++;
-      }
-    }
-
-    scoreSpan.innerText = score;
-    resultDiv.style.display = "block";
+function renderList() {
+  itemList.innerHTML = '';
+  bucketList.forEach((item, index) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <input type="checkbox" data-index="${index}" ${item.completed ? 'checked' : ''}>
+      <span>${item.name}</span>
+    `;
+    itemList.appendChild(listItem);
   });
+}
+
+function updateLocalStorage() {
+  localStorage.setItem('bucketList', JSON.stringify(bucketList));
+}
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const itemInput = document.getElementById('itemInput');
+  const newItem = { name: itemInput.value, completed: false };
+  bucketList.push(newItem);
+  itemInput.value = '';
+  updateLocalStorage();
+  renderList();
 });
+
+itemList.addEventListener('change', function (e) {
+  if (e.target.matches('input[type="checkbox"]')) {
+    const index = e.target.getAttribute('data-index');
+    bucketList[index].completed = e.target.checked;
+    updateLocalStorage();
+    renderList();
+  }
+});
+
+// Initial rendering of the list
+renderList();
