@@ -8,10 +8,7 @@ function renderList() {
   itemList.innerHTML = '';
   bucketList.forEach(function (item, index) { // Replace arrow function with a traditional function
     const listItem = document.createElement('li');
-    listItem.innerHTML = `
-      <input type="checkbox" data-index="${index}" ${item.completed ? 'checked' : ''}>
-      <span>${item.name}</span>
-    `;
+    listItem.innerHTML = '<input type="checkbox" data-index="' + index + '" ' + (item.completed ? 'checked' : '') + '><span>' + item.name + '</span>';
     itemList.appendChild(listItem);
   });
 }
