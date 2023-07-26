@@ -50,3 +50,13 @@ li {
 input[type="checkbox"] {
   margin-right: 10px;
 }
+
+.remove-btn {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
