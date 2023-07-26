@@ -25,14 +25,21 @@ document.addEventListener("DOMContentLoaded", function() {
     event.preventDefault();
 
     var score = 0;
-    var userAnswers = new FormData(quizForm);
+    var inputs = quizForm.elements;
 
-    quizData.forEach(function(question, index) {
-      var selectedAnswer = userAnswers.get('q' + (index + 1));
-      if (selectedAnswer === question.answer) {
+    for (var i = 0; i < quizData.length; i++) {
+      var selectedAnswer = null;
+      for (var j = 0; j < inputs.length; j++) {
+        var input = inputs[j];
+        if (input.name === q${i + 1} && input.checked) {
+          selectedAnswer = input.value;
+          break;
+        }
+      }
+      if (selectedAnswer === quizData[i].answer) {
         score++;
       }
-    });
+    }
 
     scoreSpan.innerText = score;
     resultDiv.style.display = "block";
