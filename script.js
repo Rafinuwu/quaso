@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const quizData = [
+document.addEventListener("DOMContentLoaded", function() {
+  var quizData = [
     {
       question: "Toi koi?",
       options: ["hoem", "dudu", "tomar moaan"],
@@ -17,18 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-  const quizForm = document.getElementById("quiz-form");
-  const resultDiv = document.getElementById("result");
-  const scoreSpan = document.getElementById("score");
+  var quizForm = document.getElementById("quiz-form");
+  var resultDiv = document.getElementById("result");
+  var scoreSpan = document.getElementById("score");
 
-  quizForm.addEventListener("submit", function (event) {
+  quizForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    let score = 0;
-    const userAnswers = new FormData(quizForm);
+    var score = 0;
+    var userAnswers = new FormData(quizForm);
 
-    quizData.forEach(function (question, index) {
-      const selectedAnswer = userAnswers.get(q${index + 1});
+    quizData.forEach(function(question, index) {
+      var selectedAnswer = userAnswers.get(q${index + 1});
       if (selectedAnswer === question.answer) {
         score++;
       }
@@ -37,3 +37,4 @@ document.addEventListener("DOMContentLoaded", function () {
     scoreSpan.innerText = score;
     resultDiv.style.display = "block";
   });
+});
