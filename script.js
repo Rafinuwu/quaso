@@ -6,7 +6,7 @@ const itemList = document.getElementById('itemList');
 
 function renderList() {
   itemList.innerHTML = '';
-  bucketList.forEach((item, index) => {
+  bucketList.forEach(function (item, index) { // Replace arrow function with a traditional function
     const listItem = document.createElement('li');
     listItem.innerHTML = `
       <input type="checkbox" data-index="${index}" ${item.completed ? 'checked' : ''}>
