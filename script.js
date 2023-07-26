@@ -1,4 +1,4 @@
-const quizData = [
+var quizData = [
     {
         question: "Toi koi?",
         options: ["hoem", "dudu", "tomar moaan"],
