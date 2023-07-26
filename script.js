@@ -6,9 +6,13 @@ const itemList = document.getElementById('itemList');
 
 function renderList() {
   itemList.innerHTML = '';
-  bucketList.forEach(function (item, index) { // Replace arrow function with a traditional function
+  bucketList.forEach(function (item, index) {
     const listItem = document.createElement('li');
-    listItem.innerHTML = '<input type="checkbox" data-index="' + index + '" ' + (item.completed ? 'checked' : '') + '><span>' + item.name + '</span>';
+    listItem.innerHTML = `
+      <input type="checkbox" data-index="${index}" ${item.completed ? 'checked' : ''}>
+      <span>${item.name}</span>
+      <button class="remove-btn" data-index="${index}">Remove</button>
+    `;
     itemList.appendChild(listItem);
   });
 }
@@ -27,10 +31,15 @@ form.addEventListener('submit', function (e) {
   renderList();
 });
 
-itemList.addEventListener('change', function (e) {
+itemList.addEventListener('click', function (e) {
   if (e.target.matches('input[type="checkbox"]')) {
     const index = e.target.getAttribute('data-index');
     bucketList[index].completed = e.target.checked;
+    updateLocalStorage();
+    renderList();
+  } else if (e.target.matches('.remove-btn')) {
+    const index = e.target.getAttribute('data-index');
+    bucketList.splice(index, 1);
     updateLocalStorage();
     renderList();
   }
