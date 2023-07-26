@@ -16,18 +16,18 @@ var quizData = [
     }
 ];
 
-const quizForm = document.getElementById("quiz-form");
-const resultDiv = document.getElementById("result");
-const scoreSpan = document.getElementById("score");
+var quizForm = document.getElementById("quiz-form");
+var resultDiv = document.getElementById("result");
+var scoreSpan = document.getElementById("score");
 
 quizForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     let score = 0;
-    const userAnswers = new FormData(quizForm);
+    var userAnswers = new FormData(quizForm);
 
     quizData.forEach((question, index) => {
-        const selectedAnswer = userAnswers.get(q${index + 1});
+        var selectedAnswer = userAnswers.get(q${index + 1});
         if (selectedAnswer === question.answer) {
             score++;
         }
