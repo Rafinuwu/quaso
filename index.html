@@ -1,39 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Interactive Quiz</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bucket List Tracker</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="quiz-container">
-        <h1>Quiz Title</h1>
-        <form id="quiz-form">
-            <div class="question">
-                <p>1. Toi koi?</p>
-                <label><input type="radio" name="q1" value="hoem"> Hoem</label>
-                <label><input type="radio" name="q1" value="dudu"> Dudu</label>
-                <label><input type="radio" name="q1" value="tomar moaan"> Tomar Moaan</label>
-            </div>
-            <div class="question">
-                <p>2. Where did we first meet?</p>
-                <label><input type="radio" name="q2" value="concert"> Concert</label>
-                <label><input type="radio" name="q2" value="orientation"> Orientation</label>
-                <label><input type="radio" name="q2" value="dudu first day"> Dudu First Day</label>
-            </div>
-            <div class="question">
-                <p>3. What's my most fav memory of us?</p>
-                <label><input type="radio" name="q3" value="juju"> Juju</label>
-                <label><input type="radio" name="q3" value="gulshan datez"> Gulshan Datez</label>
-                <label><input type="radio" name="q3" value="uttara"> Uttara</label>
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-        <div class="result" id="result">
-            <h2>Quiz Result</h2>
-            <p>You scored <span id="score"></span> out of 3.</p>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <div class="container">
+    <h1>My Bucket List Tracker</h1>
+    <form id="addForm">
+      <input type="text" id="itemInput" placeholder="Add new item..." required>
+      <button type="submit">Add</button>
+    </form>
+    <ul id="itemList">
+      <!-- Bucket list items will be added here -->
+    </ul>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
+
